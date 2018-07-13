@@ -1,2 +1,2 @@
-# yasb
-Site Builder using Electron to edit page content in Markdown and allowing custom HTML transformation
+# Single Page Website Builder
+Builder for Single Page Websites from Markdown source with custom HTML transformations.
