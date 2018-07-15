@@ -1,0 +1,26 @@
+{
+  "name": "spwb",
+  "version": "1.0.0",
+  "description": "Builder for Single Page Websites on GitHub from Markdown source with custom HTML transformations.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankDeGroot/spwb.git"
+  },
+  "keywords": [
+    "website",
+    "builder"
+  ],
+  "author": "Frank de Groot - Schouten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrankDeGroot/spwb/issues"
+  },
+  "homepage": "https://github.com/FrankDeGroot/spwb#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
