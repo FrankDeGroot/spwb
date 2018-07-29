@@ -20,6 +20,14 @@
   "homepage": "https://github.com/FrankDeGroot/spwb#readme",
   "devDependencies": {},
   "dependencies": {
-    "nodegit": "^0.22.2"
+    "cheerio": "^1.0.0-rc.2",
+    "copy": "^0.3.2",
+    "del": "^3.0.0",
+    "glob": "^7.1.2",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.9.2",
+    "nodegit": "^0.22.2",
+    "showdown": "^1.8.6",
+    "uglify-es": "^3.3.9"
   }
 }
