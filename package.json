@@ -1,6 +1,6 @@
 {
   "name": "spwb",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Builder for Single Page Websites on GitHub from Markdown source with custom HTML transformations.",
   "main": "index.js",
   "scripts": {
