@@ -1,6 +1,7 @@
 'use strict';
 
 (async () => {
-  require('./build-css-test')();
-  require('./build-html-test')();
+  await require('./build-css-test')();
+  await require('./build-html-test')();
+  await require('./build-js-test')();
 })();
