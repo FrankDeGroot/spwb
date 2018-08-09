@@ -19,15 +19,17 @@ module.exports = async () => {
   });
 
   const htmlFile = path.join(siteDir, 'index.html');
-  if (!await promisify(fs.exists)(htmlFile)) {
+  if (!(await promisify(fs.exists)(htmlFile))) {
     throw new Error('Expected ' + htmlFile);
   }
 
-  const htmlContent = (await promisify(fs.readFile)(htmlFile));
+  const htmlContent = await promisify(fs.readFile)(htmlFile);
   const expectedContent = `<!DOCTYPE html>
 <html><head></head><body><h1 id="test" test="test">Test</h1>
 <p>test</p></body></html>`;
-  if (htmlContent != expectedContent) {
-    throw new Error(htmlFile + ' was ' + htmlContent + ' expected ' + expectedContent + '.');
+  if (htmlContent !== expectedContent) {
+    throw new Error(
+      htmlFile + ' was ' + htmlContent + ' expected ' + expectedContent + '.'
+    );
   }
 };
