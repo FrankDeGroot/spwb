@@ -23,10 +23,9 @@ module.exports = async () => {
     throw new Error('Expected ' + htmlFile);
   }
 
-  const htmlContent = await promisify(fs.readFile)(htmlFile);
-  const expectedContent = `<!DOCTYPE html>
-<html><head></head><body><h1 id="test" test="test">Test</h1>
-<p>test</p></body></html>`;
+  const htmlContent = await promisify(fs.readFile)(htmlFile, 'utf8');
+  const expectedFile = path.join(contentDir, 'index.html');
+  const expectedContent = await promisify(fs.readFile)(expectedFile, 'utf8');
   if (htmlContent !== expectedContent) {
     throw new Error(
       htmlFile + ' was ' + htmlContent + ' expected ' + expectedContent + '.'
