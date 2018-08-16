@@ -1,31 +1,18 @@
 'use strict';
 
-module.exports = async () => {
-  const fs = require('fs');
+module.exports = async config => {
+  const fs = require('fs-extra');
   const path = require('path');
-  const { promisify } = require('util');
+  const { exists } = require('./expects');
 
-  const contentDir = path.join(__dirname, 'content');
-  const designDir = path.join(__dirname, 'design');
-  const siteDir = path.join(__dirname, 'site');
+  await require('../lib/build-html')(config);
 
-  await require('del')(siteDir);
-  await promisify(require('mkdirp'))(siteDir);
+  const htmlFile = path.join(config.siteDir, 'index.html');
+  await exists(htmlFile);
 
-  await require('../lib/build-html')({
-    contentDir: contentDir,
-    designDir: designDir,
-    siteDir: siteDir
-  });
-
-  const htmlFile = path.join(siteDir, 'index.html');
-  if (!(await promisify(fs.exists)(htmlFile))) {
-    throw new Error('Expected ' + htmlFile);
-  }
-
-  const htmlContent = await promisify(fs.readFile)(htmlFile, 'utf8');
-  const expectedFile = path.join(contentDir, 'index.html');
-  const expectedContent = await promisify(fs.readFile)(expectedFile, 'utf8');
+  const htmlContent = await fs.readFile(htmlFile, 'utf8');
+  const expectedFile = path.join(config.contentDir, 'index.html');
+  const expectedContent = await fs.readFile(expectedFile, 'utf8');
   if (htmlContent !== expectedContent) {
     throw new Error(
       htmlFile + ' was ' + htmlContent + ' expected ' + expectedContent + '.'
