@@ -1,6 +1,2 @@
-'use strict';
-
-module.exports = {
-  build: require('./lib/build'),
-  watch: require('./lib/watch')
-};
+export { build } from "./lib/build";
+export { watchAll } from "./lib/watch";

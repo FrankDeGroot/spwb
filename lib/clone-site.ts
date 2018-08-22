@@ -1,18 +1,22 @@
-'use strict';
+import { remove, stat } from "fs-extra";
+import * as glob from "globby";
+import { Clone, Cred } from "nodegit";
 
-const fs = require('fs-extra');
-const git = require('nodegit');
-
-module.exports = async ({ siteDir, siteToken, siteUrl }) => {
-  if (!(await fs.exists(siteDir))) {
-    await git.Clone(siteUrl, siteDir, {
+export async function cloneSite({ siteDir, siteToken, siteUrl }) {
+  const siteStats = await stat(siteDir);
+  if (siteStats.isDirectory) {
+    for (const path of await glob([siteDir, "!.git"])) {
+      await remove(path);
+    }
+  } else {
+    await Clone.clone(siteUrl, siteDir, {
       fetchOpts: {
         callbacks: {
           certificateCheck: () => 1,
           credentials: () =>
-            git.Cred.userpassPlaintextNew(siteToken, 'x-oauth-basic')
-        }
-      }
+            Cred.userpassPlaintextNew(siteToken, "x-oauth-basic"),
+        },
+      },
     });
   }
-};
+}

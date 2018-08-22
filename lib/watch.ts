@@ -1,37 +1,40 @@
-'use strict';
+import { watch } from "fs";
+import { build } from "./build";
+import { buildCss } from "./build-css";
+import { buildHtml } from "./build-html";
+import { buildImages } from "./build-images";
+import { buildJs } from "./build-js";
 
-module.exports = function(config) {
-  require('./build')(config);
+export async function watchAll(config) {
+  await build(config);
 
   const options = {
-    recursive: true
+    recursive: true,
   };
-
-  const fs = require('fs');
 
   const { contentDir, designDir, scriptDir, styleDir } = config;
 
-  fs.watch(contentDir, options, (event, filename) => {
+  watch(contentDir, options, async (event, filename) => {
     console.log(event, filename);
-    if (filename.endsWith('md')) {
-      require('./build-html')(config);
+    if (filename.endsWith("md")) {
+      await buildHtml(config);
     } else {
-      require('./build-images')(config);
+      await buildImages(config);
     }
   });
 
-  fs.watch(designDir, options, (event, filename) => {
+  watch(designDir, options, async (event, filename) => {
     console.log(event, filename);
-    require('./build-html')(config);
+    await buildHtml(config);
   });
 
-  fs.watch(scriptDir, options, (event, filename) => {
+  watch(scriptDir, options, async (event, filename) => {
     console.log(event, filename);
-    require('./build-js')(config);
+    await buildJs(config);
   });
 
-  fs.watch(styleDir, options, (event, filename) => {
+  watch(styleDir, options, async (event, filename) => {
     console.log(event, filename);
-    require('./build-css')(config);
+    await buildCss(config);
   });
-};
+}

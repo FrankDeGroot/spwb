@@ -1,6 +1,10 @@
-'use strict';
+import { buildCss } from "./build-css";
+import { buildHtml } from "./build-html";
+import { buildImages } from "./build-images";
+import { buildJs } from "./build-js";
+import { cloneSite } from "./clone-site";
 
-module.exports = async function(config) {
+export async function build(config) {
   const {
     contentDir,
     designDir,
@@ -8,7 +12,7 @@ module.exports = async function(config) {
     styleDir,
     siteDir,
     siteToken,
-    siteUrl
+    siteUrl,
   } = config;
   if (
     !contentDir ||
@@ -20,13 +24,12 @@ module.exports = async function(config) {
     !siteUrl
   ) {
     throw new Error(
-      'Need values for contentDir, designDir, scriptDir, styleDir, siteDir, token, url to build.'
+      "Need values for contentDir, designDir, scriptDir, styleDir, siteDir, token, url to build.",
     );
   }
-  await require('./clone-site')(config);
-  await require('del')([siteDir, '!.git']);
-  await require('./build-images')(config);
-  await require('./build-js')(config);
-  await require('./build-css')(config);
-  await require('./build-html')(config);
-};
+  await cloneSite(config);
+  await buildImages(config);
+  await buildJs(config);
+  await buildCss(config);
+  await buildHtml(config);
+}

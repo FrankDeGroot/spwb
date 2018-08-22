@@ -3,4 +3,5 @@
 !.gitignore
 !.npmignore
 node_modules
-*.js*
+*.js
+*.js.map

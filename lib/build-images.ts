@@ -1,14 +1,12 @@
-'use strict';
+import { copy } from "fs-extra";
+import * as glob from "globby";
+import { join, relative } from "path";
 
-const fs = require('fs-extra');
-const glob = require('globby');
-const path = require('path');
-
-module.exports = async ({ contentDir, siteDir }) => {
-  await fs.copy(path.join(contentDir, 'images'), path.join(siteDir, 'images'));
-  await fs.copy(path.join(contentDir, 'media'), path.join(siteDir, 'media'));
-  for (const icoFile of await glob(path.join(contentDir, '*.ico'))) {
-    const toFile = path.join(siteDir, path.relative(contentDir, icoFile));
-    await fs.copy(icoFile, toFile);
+export async function buildImages({ contentDir, siteDir }) {
+  await copy(join(contentDir, "images"), join(siteDir, "images"));
+  await copy(join(contentDir, "media"), join(siteDir, "media"));
+  for (const icoFile of await glob(join(contentDir, "*.ico"))) {
+    const toFile = join(siteDir, relative(contentDir, icoFile));
+    await copy(icoFile, toFile);
   }
-};
+}
