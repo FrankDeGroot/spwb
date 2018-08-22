@@ -4,8 +4,9 @@ import { buildCss } from "./build-css";
 import { buildHtml } from "./build-html";
 import { buildImages } from "./build-images";
 import { buildJs } from "./build-js";
+import { IConfig } from "./config";
 
-export async function watchAll(config) {
+export async function watchAll(config: IConfig) {
   await build(config);
 
   const options = {

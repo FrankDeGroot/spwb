@@ -1,7 +1,8 @@
 import { buildImages } from "../lib/build-images";
+import { IConfig } from "../lib/config";
 import { exists } from "./expects";
 
-export async function buildImagesTest(config) {
+export async function buildImagesTest(config: IConfig) {
   await buildImages(config);
 
   await exists(config.siteDir, "file.ico");

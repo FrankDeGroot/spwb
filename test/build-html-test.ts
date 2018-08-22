@@ -1,9 +1,10 @@
 import { readFile } from "fs-extra";
 import { join } from "path";
 import { buildHtml } from "../lib/build-html";
+import { IConfig } from "../lib/config";
 import { exists } from "./expects";
 
-export async function buildHtmlTest(config) {
+export async function buildHtmlTest(config: IConfig) {
   await buildHtml(config);
 
   const htmlFile = join(config.siteDir, "index.html");

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-      "target": "es2018",
       "module": "commonjs",
-      "sourceMap": true
+      "noImplicitAny": true,
+      "sourceMap": true,
+      "target": "es2018"
   },
   "filesGlob": [
     "**/*.ts",

@@ -3,8 +3,9 @@ import { buildHtml } from "./build-html";
 import { buildImages } from "./build-images";
 import { buildJs } from "./build-js";
 import { cloneSite } from "./clone-site";
+import { IConfig } from "./config";
 
-export async function build(config) {
+export async function build(config: IConfig) {
   const {
     contentDir,
     designDir,

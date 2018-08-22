@@ -1,7 +1,8 @@
 import { mkdirp, remove } from "fs-extra";
 import { join } from "path";
+import { IConfig } from "../lib/config";
 
-export async function setup() {
+export async function setup(): Promise<IConfig> {
   const siteDir = join(__dirname, "site");
 
   await remove(siteDir);
@@ -12,6 +13,8 @@ export async function setup() {
     designDir: join(__dirname, "design"),
     scriptDir: join(__dirname, "script"),
     siteDir,
+    siteToken: "",
+    siteUrl: "",
     styleDir: join(__dirname, "style"),
   };
 }

@@ -3,19 +3,20 @@ import { mkdirp, readFile, writeFile } from "fs-extra";
 import * as glob from "globby";
 import { dirname, join, relative } from "path";
 import { Converter } from "showdown";
+import { IConfig } from "./config";
 
 const converter = new Converter({
   customizedHeaderId: true,
   tables: true,
 });
 
-export async function buildHtml({ contentDir, designDir, siteDir }) {
+export async function buildHtml({ contentDir, designDir, siteDir }: IConfig) {
   for (const mdFile of await glob(join(contentDir, "**", "*.md"))) {
     await convertFile(contentDir, siteDir, designDir, mdFile);
   }
 }
 
-async function convertFile(contentDir, siteDir, designDir, mdFile) {
+async function convertFile(contentDir: string, siteDir: string, designDir: string, mdFile: string) {
   const markdown = await readFile(mdFile, { encoding: "utf-8" });
   const $ = load(converter.makeHtml(markdown).replace(/[\r\n]/g, ""));
 
