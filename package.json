@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "Builder for Single Page Websites on GitHub from Markdown source with custom HTML transformations.",
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
-    "clean": "node_modules/.bin/rimraf *.js *.js.map lib/*.js lib/*.js.map test/*.js test/*.js.map test/site",
+    "clean": "rimraf *.js *.js.map lib/*.js lib/*.js.map test/*.js test/*.js.map test/site",
     "tsc": "tsc --project .",
     "tslint": "tslint --fix --project .",
     "test": "node test/test.js"
