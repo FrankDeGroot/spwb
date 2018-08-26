@@ -1,3 +1,6 @@
-test/
-*.ts
 !*.d.ts
+.npmignore
+*.ts
+test/
+tsconfig.json
+tslint.json

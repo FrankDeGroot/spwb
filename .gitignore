@@ -1,7 +1,7 @@
-.*
 !.editorconfig
 !.gitignore
 !.npmignore
-node_modules
+.*
 *.js
 *.js.map
+node_modules
