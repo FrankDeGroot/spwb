@@ -40,7 +40,7 @@
     "cheerio": "^1.0.0-rc.2",
     "fs-extra": "^7.0.0",
     "globby": "^8.0.1",
-    "node-sass": "^4.9.2",
+    "node-sass": "^7.0.0",
     "nodegit": "^0.22.2",
     "showdown": "^1.8.6",
     "uglify-es": "^3.3.9"
